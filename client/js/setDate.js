@@ -1,44 +1,19 @@
 let days = Array.from(document.getElementsByClassName("page-nav__day")); 
 let date = new Date();
-date.setDate(date.getDate() - 1);
+date.setDate(date.getDate()-1 );
 
 days.forEach(element => { 
-  date.setDate(date.getDate() +1);
+  date.setDate(date.getDate()+1);
   element.children[1].textContent = date.getDate();
-  switch(Number(date.getDay())){
-    case 1:{
-      element.children[0].textContent = "Пн";
-      break;
-    }
-    case 2:{
-      element.children[0].textContent = "Вт";
-      break;
-    }
-    case 3:{
-      element.children[0].textContent = "Ср";
-      break;
-    }
-    case 4:{
-      element.children[0].textContent = "Чт";
-      break;
-    }
-    case 5:{
-      element.children[0].textContent = "Пт";
-      break;
-    }
-    case 6:{
-      element.children[0].textContent = "Сб";
-      element.classList.add("page-nav__day_weekend");
-      break;
-    }
-    case 0:{
-      element.children[0].textContent = "Вс";
-      element.classList.add("page-nav__day_weekend");
-      break;
-    }
-    default:
-      break;
+ let days = [ "Вс","Пн","Вт", "Ср", "Чт", "Пт","Сб"];
+ days.forEach(e =>{
+if(Number(date.getDay()) === days.findIndex(i => i == e)){
+  element.children[0].textContent = e;
+}
+if(Number(date.getDay()) === days.indexOf("Сб")||Number(date.getDay()) === days.indexOf("Вс") ){
+    element.classList.add("page-nav__day_weekend");
   }
+})
 })
 
 let currentDate = new Date();
